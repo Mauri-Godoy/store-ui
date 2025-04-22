@@ -1,2 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+@theme {
+  --color-font-display: "Satoshi", "sans-serif";
+  --color-background: #0B0C10;
+  --color-primary: #7f5af0;
+  --color-secondary: #ff6f61;
+  --color-details: #e3f6f5;
+  --color-text: #f7f7f7;
+}
+
+body {
+  @apply bg-background text-text;
+}
+
+.btn {
+  @apply bg-primary text-text font-medium uppercase px-4 py-2 rounded-lg transition duration-300 ease-in-out;
+  @apply hover:brightness-110;
+}

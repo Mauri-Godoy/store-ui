@@ -1,7 +1,7 @@
 {
   "workbench.colorTheme": "SynthWave '84",
   "workbench.iconTheme": "material-icon-theme",
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "window.zoomLevel": -1,
   "editor.fontFamily": "'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Ubuntu Mono', 'monospace', monospace, 'Droid Sans Mono'",
   "editor.tabSize": 4,
