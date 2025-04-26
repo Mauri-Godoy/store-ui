@@ -1,0 +1,22 @@
+<div class="carousel w-full scroll-smooth snap-x snap-mandatory overflow-x-auto">
+  <div id="item1" class="carousel-item w-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp" class="w-full" />
+  </div>
+  <div id="item2" class="carousel-item w-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp" class="w-full" />
+  </div>
+  <div id="item3" class="carousel-item w-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp" class="w-full" />
+  </div>
+  <div id="item4" class="carousel-item w-full">
+    <img src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
+      class="w-full transition duration-300 ease-in-out" />
+  </div>
+</div>
+
+<div class="flex w-full justify-center gap-2 py-2">
+  <a [routerLink]="[]" fragment="item1" class="btn btn-xs" (click)="scrollToAndResetInterval('item1')">1</a>
+  <a [routerLink]="[]" fragment="item2" class="btn btn-xs" (click)="scrollToAndResetInterval('item2')">2</a>
+  <a [routerLink]="[]" fragment="item3" class="btn btn-xs" (click)="scrollToAndResetInterval('item3')">3</a>
+  <a [routerLink]="[]" fragment="item4" class="btn btn-xs" (click)="scrollToAndResetInterval('item4')">4</a>
+</div>
