@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-cart',
-  imports: [],
-  templateUrl: './cart.component.html'
+  selector: 'app-cart-preview',
+  imports: [RouterModule],
+  templateUrl: './cart-preview.component.html'
 })
-export class CartComponent {
+export class CartPreviewComponent {
 
   constructor(private cartService: CartService) {
   }
@@ -15,7 +16,7 @@ export class CartComponent {
     return this.cartService.getItemCount()
   }
 
-  get total(){
+  get total() {
     return this.cartService.getTotal()
   }
 }

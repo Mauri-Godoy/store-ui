@@ -1,0 +1,12 @@
+<div class="card card-side bg-base-100 shadow-sm h-52" *ngFor="let item of cartItems">
+  <figure class="w-52 h-full cover-full">
+    <img [src]="item.imageUrl" [alt]="item.name" />
+  </figure>
+  <div class="card-body">
+    <h2 class="card-title">{{item.name}}</h2>
+    <p>{{item.description}}</p>
+    <div class="card-actions justify-end">
+      <button class="btn btn-primary">Watch</button>
+    </div>
+  </div>
+</div>

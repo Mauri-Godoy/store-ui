@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { CartComponent } from '../cart/cart.component';
+import { CartPreviewComponent } from '../cart/cart-preview.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [CartComponent],
+  imports: [CartPreviewComponent, RouterModule],
   templateUrl: './nav-bar.component.html'
 })
 export class NavBarComponent {
