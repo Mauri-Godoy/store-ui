@@ -4,6 +4,7 @@ export class Product {
   description!: string;
   price!: number;
   quantity!: number;
+  quantityToBuy: number = 1;
   category?: string;
   imageUrl?: string;
 }
