@@ -1,12 +1,15 @@
-<div class="card bg-base-100 w-96 shadow-sm" *ngFor="let item of products">
-  <figure>
-    <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp" alt="Shoes" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">{{ item.name }}</h2>
-    <p>{{ item.description }}</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Buy Now</button>
+<div class="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
+
+  <div class="card border  h-80 shadow-sm " *ngFor="let item of products">
+    <figure  class="w-full h-full cover-full">
+      <img [src]="item.imageUrl" [alt]="item.name" />
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">{{ item.name }}</h2>
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary">Buy Now</button>
+      </div>
     </div>
   </div>
+
 </div>

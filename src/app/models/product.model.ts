@@ -5,4 +5,5 @@ export class Product {
   price!: number;
   quantity!: number;
   category?: string;
+  imageUrl?: string;
 }
