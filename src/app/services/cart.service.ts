@@ -59,7 +59,6 @@ export class CartService {
   }
 
   getTotal(): number {
-    debugger
     return this.getCart().reduce((total, item) => total + item.price * item?.quantityToBuy || 0, 0);
   }
 

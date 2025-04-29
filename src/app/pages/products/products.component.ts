@@ -3,6 +3,7 @@ import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -13,15 +14,17 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private productService: ProductService,
-    private cartService: CartService
-  ) { }
-
-  ngOnInit(): void {
-    this.getProducts();
+    private cartService: CartService,
+    private route: ActivatedRoute
+  ) {
   }
 
-  getProducts(): void {
-    this.productService.getProducts().subscribe(
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((queryParams: any) => this.getProducts(queryParams['search']));
+  }
+
+  getProducts(search?: string): void {
+    this.productService.getProducts(search).subscribe(
       (data: Product[]) => {
         this.products = data;
       }

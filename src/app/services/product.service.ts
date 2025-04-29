@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Product } from '../models/product.model';
@@ -11,7 +11,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts() {
-    return this.http.get<Product[]>(`${this.baseUrl}`);
+  getProducts(search?: string) {
+    let params = new HttpParams();
+    if (search)
+      params = params.append('search', search);
+
+    return this.http.get<Product[]>(`${this.baseUrl}`, { params });
   }
 }

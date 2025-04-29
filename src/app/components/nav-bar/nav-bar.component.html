@@ -1,10 +1,27 @@
 <div class=" bg-base-100 shadow-sm">
   <div class="container mx-auto max-w-6xl navbar">
 
-    <div class="flex-1">
+    <div>
       <a class="btn btn-ghost text-xl" [routerLink]="['']">Store</a>
     </div>
-    <div class="flex-none">
+
+    <div class="mx-auto flex w-2/4">
+      <label class="input w-full">
+        <input type="search" placeholder="Buscar" [(ngModel)]="search" />
+      </label>
+      <button type="button" (click)="searchProducts()" class="btn">
+        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </g>
+        </svg>
+      </button>
+    </div>
+
+    <button type="button" class="btn btn-ghost" [routerLink]="['products']">Tienda</button>
+
+    <div class="flex">
       <div class="dropdown dropdown-end">
         <app-cart-preview></app-cart-preview>
       </div>
@@ -27,7 +44,5 @@
         </ul>
       </div>
     </div>
-    <button onclick="document.documentElement.setAttribute('data-theme', 'dark')">Dark</button>
-    <button onclick="document.documentElement.setAttribute('data-theme', 'light')">Light</button>
   </div>
 </div>
