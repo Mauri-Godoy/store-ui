@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
+  loading: boolean = true;
 
   constructor(private productService: ProductService,
     private cartService: CartService,
@@ -24,10 +25,16 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts(search?: string): void {
-    this.productService.getProducts(search).subscribe(
-      (data: Product[]) => {
+    this.loading = true;
+    this.productService.getProducts(search).subscribe({
+      next: data => {
         this.products = data;
+      },
+      complete: () => {
+        this.loading = false;
       }
+    }
+
     );
   }
 

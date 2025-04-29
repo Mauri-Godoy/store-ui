@@ -1,14 +1,24 @@
-<div class="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-items-center pt-4">
-  <div class="card bg-base-100 shadow-sm w-full" *ngFor="let item of products">
-    <figure class="px-5 pt-5 h-40">
-      <img [src]="item.imageUrl" [alt]="item.name" class="rounded-xl h-full w-full cover-full" />
-    </figure>
-    <div class="card-body items-center text-center">
-      <h2 class="card-title">{{ item.name }}</h2>
-      <p>{{item.description}} </p>
-      <div class="card-actions">
-        <button class="btn btn-primary">Comprar</button>
+<ng-container *ngIf="loading">
+  <div class="my-12 flex justify-center items-center">
+    <span class="loading loading-spinner text-primary w-20"></span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!loading">
+
+  <div class="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-items-center pt-4">
+    <div class="card bg-base-100 shadow-sm w-full" *ngFor="let item of products">
+      <figure class="px-5 pt-5 h-40">
+        <img [src]="item.imageUrl" [alt]="item.name" class="rounded-xl h-full w-full cover-full" />
+      </figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">{{ item.name }}</h2>
+        <p>{{item.description}} </p>
+        <div class="card-actions">
+          <button class="btn btn-primary">Comprar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+</ng-container>
