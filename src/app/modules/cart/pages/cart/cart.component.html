@@ -1,12 +1,21 @@
-<div class="card card-side bg-base-100 shadow-sm h-52" *ngFor="let item of cartItems">
-  <figure class="w-52 h-full cover-full">
-    <img [src]="item.imageUrl" [alt]="item.name" />
-  </figure>
-  <div class="card-body">
-    <h2 class="card-title">{{item.name}}</h2>
-    <p>{{item.description}}</p>
-    <div class="card-actions justify-end">
-      <button class="btn btn-primary">Watch</button>
+<ul class="list bg-base-100 rounded-box shadow-md">
+
+  <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Most played songs this week</li>
+
+  <li class="list-row" *ngFor="let item of cartItems">
+    <div> <img class="h-40 w-40" [src]="item.imageUrl" [alt]="item.name" />
     </div>
-  </div>
-</div>
+    <div>
+      <div>{{item.name}}</div>
+      <div class="text-xs uppercase font-semibold opacity-60">{{item.description}}</div>
+    </div>
+    <button class="btn btn-square btn-ghost">
+      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
+          <path d="M6 3L20 12 6 21 6 3z"></path>
+        </g>
+      </svg>
+    </button>
+  </li>
+
+</ul>
