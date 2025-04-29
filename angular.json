@@ -12,7 +12,7 @@
         "@schematics/angular:component": {
           "skipTests": true,
           "style": "none",
-          "standalone": false
+          "standalone": true
         },
         "@schematics/angular:directive": {
           "skipTests": true

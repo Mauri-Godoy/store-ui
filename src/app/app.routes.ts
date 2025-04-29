@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
-
+import { CartComponent } from './pages/cart/cart.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { HomeComponent } from './pages/home/home.component';
 export const routes: Routes = [
   {
     path: '',
@@ -8,15 +10,15 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+    loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
   },
   {
     path: 'products',
-    loadChildren: () => import('./modules/product/product.module').then(m => m.ProductModule)
+    loadComponent: () => import('./pages/products/products.component').then(m => m.ProductsComponent)
   },
   {
     path: 'cart',
-    loadChildren: () => import('./modules/cart/cart.module').then(m => m.CartModule)
+    loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent)
   },
   {
     path: '**',

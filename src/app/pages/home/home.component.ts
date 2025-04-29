@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../../../../services/product.service';
-import { Product } from '../../../../models/product.model';
+import { Product } from '../../models/product.model';
+import { ProductService } from '../../services/product.service';
+import { CarouselComponent } from '../../components/carousel/carousel.component';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
-  standalone: false,
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  imports: [CarouselComponent, RouterModule]
 })
 export class HomeComponent {
   products: Product[] = [];

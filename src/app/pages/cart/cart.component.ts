@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../../../../services/product.service';
-import { CartService } from '../../../../services/cart.service';
+import { CartService } from '../../services/cart.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
-  standalone: false,
-  templateUrl: './cart.component.html'
+  templateUrl: './cart.component.html',
+  imports: [CommonModule],
 })
 export class CartComponent {
 

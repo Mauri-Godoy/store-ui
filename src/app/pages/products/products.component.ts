@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../../services/product.service';
-import { Product } from '../../../../models/product.model';
-import { CartService } from '../../../../services/cart.service';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/product.model';
+import { CartService } from '../../services/cart.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  standalone: false,
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  imports: [CommonModule],
 })
-export class ProductListComponent implements OnInit {
+export class ProductsComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private productService: ProductService,
