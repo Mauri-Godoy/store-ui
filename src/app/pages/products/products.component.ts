@@ -4,6 +4,7 @@ import { Product } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { CartProduct } from '../../models/cart-product.model';
 
 @Component({
   selector: 'app-products',
@@ -39,6 +40,7 @@ export class ProductsComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.cartService.addItem(product);
+    const cartProduct: CartProduct = { product: product, price: product.price, quantity: 1 };
+    this.cartService.addItem(cartProduct);
   }
 }

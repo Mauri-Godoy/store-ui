@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { Product } from '../models/product.model';
+import { CartProduct } from '../models/cart-product.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { Cart } from '../models/cart.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+  private baseUrl = `${environment.apiUrl}/cart`;
   private readonly storageKey = 'cart';
-  private cartSubject = new BehaviorSubject<Product[]>(this.loadCart());
-
+  private cartSubject = new BehaviorSubject<CartProduct[]>(this.loadCart());
   cart$ = this.cartSubject.asObservable();
 
-  private loadCart(): Product[] {
+  constructor(private http: HttpClient) { }
+
+  private loadCart(): CartProduct[] {
     try {
       const data = localStorage.getItem(this.storageKey);
       return data ? JSON.parse(data) : [];
@@ -21,22 +25,22 @@ export class CartService {
     }
   }
 
-  private saveCart(cart: Product[]): void {
+  private saveCart(cart: CartProduct[]): void {
     localStorage.setItem(this.storageKey, JSON.stringify(cart));
     this.cartSubject.next(cart);
   }
 
-  getCart(): Product[] {
+  getCart(): CartProduct[] {
     return this.cartSubject.value;
   }
 
-  addItem(item: Product): void {
+  addItem(item: CartProduct): void {
     const cart = this.getCart();
-    const existing = cart.find(p => p.id === item.id);
+    const existing = cart.find(cp => cp.product.id === item.product.id);
     if (existing) {
-      existing.quantityToBuy += item.quantityToBuy;
+      existing.quantity += item.quantity;
     } else {
-      item.quantityToBuy = 1
+      item.quantity = 1
       cart.push({ ...item });
     }
     this.saveCart(cart);
@@ -59,10 +63,18 @@ export class CartService {
   }
 
   getTotal(): number {
-    return this.getCart().reduce((total, item) => total + item.price * item?.quantityToBuy || 0, 0);
+    return this.getCart().reduce((total, item) => total + item.price * item?.quantity || 0, 0);
   }
 
   getItemCount(): number {
-    return this.getCart().reduce((total, item) => total + item?.quantityToBuy || 0, 0);
+    return this.getCart().reduce((total, item) => total + item?.quantity || 0, 0);
+  }
+
+  createCart(cart: Cart) {
+    return this.http.post(`${this.baseUrl}`, cart);
+  }
+
+  getCarts() {
+    return this.http.get<Cart[]>(`${this.baseUrl}`);
   }
 }

@@ -1,21 +1,35 @@
-<ul class="list bg-base-100 rounded-box shadow-md">
+<div class="grid grid-cols-4 gap-2 mt-2">
 
-  <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Most played songs this week</li>
+  <ul class="list bg-base-100 rounded-box shadow-md col-span-3">
 
-  <li class="list-row" *ngFor="let item of cartItems">
-    <div> <img class="h-40 w-40" [src]="item.imageUrl" [alt]="item.name" />
+    <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Most played songs this week</li>
+
+    <li class="list-row" *ngFor="let item of cartItems">
+      <div> <img class="h-40 w-40" [src]="item.product.imageUrl" [alt]="item.product.name" />
+      </div>
+      <div>
+        <div>{{item.product.name}}</div>
+        <div class="text-xs uppercase font-semibold opacity-60">{{item.product.description}}</div>
+      </div>
+      <button class="btn btn-square btn-ghost">
+        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
+            <path d="M6 3L20 12 6 21 6 3z"></path>
+          </g>
+        </svg>
+      </button>
+    </li>
+
+  </ul>
+
+  <div class="card bg-base-100 w-96 shadow-sm col-span-1">
+    <div class="card-body">
+      <h2 class="card-title">Card title!</h2>
+      <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+      <div class="card-actions justify-end">
+        <button class="btn btn-primary" (click)="createCart()">Buy Now</button>
+      </div>
     </div>
-    <div>
-      <div>{{item.name}}</div>
-      <div class="text-xs uppercase font-semibold opacity-60">{{item.description}}</div>
-    </div>
-    <button class="btn btn-square btn-ghost">
-      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-          <path d="M6 3L20 12 6 21 6 3z"></path>
-        </g>
-      </svg>
-    </button>
-  </li>
+  </div>
 
-</ul>
+</div>

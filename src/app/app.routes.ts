@@ -1,7 +1,4 @@
 import { Routes } from '@angular/router';
-import { CartComponent } from './pages/cart/cart.component';
-import { ProductsComponent } from './pages/products/products.component';
-import { HomeComponent } from './pages/home/home.component';
 export const routes: Routes = [
   {
     path: '',
@@ -19,6 +16,10 @@ export const routes: Routes = [
   {
     path: 'cart',
     loadComponent: () => import('./pages/cart/cart.component').then(m => m.CartComponent)
+  },
+  {
+    path: 'carts',
+    loadComponent: () => import('./pages/carts/carts.component').then(m => m.CartsComponent)
   },
   {
     path: '**',

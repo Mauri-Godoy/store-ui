@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
+import { Cart } from '../../models/cart.model';
 
 @Component({
   selector: 'app-cart',
@@ -13,5 +14,21 @@ export class CartComponent {
 
   get cartItems() {
     return this.cartService.getCart()
+  }
+
+  createCart() {
+    const cart: Cart = {
+      cartProducts: this.cartItems
+    }
+
+    this.cartService.createCart(cart).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.cartService.clearCart();
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
 }
