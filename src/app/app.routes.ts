@@ -22,6 +22,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/carts/carts.component').then(m => m.CartsComponent)
   },
   {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
+  },
+  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full'
