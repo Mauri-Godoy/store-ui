@@ -10,28 +10,21 @@
         <input type="search" placeholder="Buscar" [(ngModel)]="search" />
       </label>
       <button type="button" (click)="searchProducts()" class="btn">
-        <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
-          </g>
-        </svg>
+        <lucide-angular [img]="Search"></lucide-angular>
       </button>
     </div>
 
-    <button type="button" class="btn btn-ghost" [routerLink]="['products']">Tienda</button>
+    <a class="btn btn-ghost" [routerLink]="['products']">Tienda</a>
+    <a class="btn btn-ghost" routerLink="login">Ingresá</a>
 
     <div class="flex">
       <div class="dropdown dropdown-end">
         <app-cart-preview></app-cart-preview>
       </div>
       <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-          <div class="w-10 rounded-full">
-            <img alt="Tailwind CSS Navbar component"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-          </div>
-        </div>
+        <button class="btn btn-circle btn-ghost">
+          <lucide-angular [img]="User"></lucide-angular>
+        </button>
         <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
           <li><a routerLink="carts">Mis compras</a></li>
         </ul>
