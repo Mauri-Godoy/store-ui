@@ -2,15 +2,18 @@ import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LucideAngularModule, ArrowRight, ArrowLeft } from 'lucide-angular';
 
 @Component({
   selector: 'app-carousel',
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, LucideAngularModule],
   templateUrl: './carousel.component.html'
 })
 export class CarouselComponent {
   private intervalId: any;
-  private currentItemIndex = 0;
+  public currentItemIndex = 0;
+  readonly ArrowRight = ArrowRight;
+  readonly ArrowLeft = ArrowLeft;
   @Input() products: Product[] = []; // IDs de tus elementos
 
   constructor() { }
