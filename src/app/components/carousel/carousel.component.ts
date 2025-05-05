@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Product } from '../../models/product.model';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-carousel',
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule],
   templateUrl: './carousel.component.html'
 })
 export class CarouselComponent {
   private intervalId: any;
   private currentItemIndex = 0;
-  private items = ['item1', 'item2', 'item3', 'item4']; // IDs de tus elementos
+  @Input() products: Product[] = []; // IDs de tus elementos
 
-  constructor(private route: ActivatedRoute
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.startAutoScroll();
@@ -24,14 +25,32 @@ export class CarouselComponent {
 
   startAutoScroll() {
     this.intervalId = setInterval(() => {
-      this.scrollTo(this.items[this.currentItemIndex]);
-      this.currentItemIndex = (this.currentItemIndex + 1) % this.items.length; // Loop circular
-    }, 3000); // cada 3000ms (3 segundos)
+      this.scrollTo(this.products[this.currentItemIndex].id.toString());
+      this.currentItemIndex = (this.currentItemIndex + 1) % this.products.length; // Loop circular
+    }, 5000); // cada ms % 1000 segundos
   }
 
   scrollToAndResetInterval(id: string) {
     this.scrollTo(id);
-    this.resetCarousel(); // Reinicia el carrusel al hacer scroll
+    this.resetCarousel();
+  }
+
+  scrollByIndex(i: number, next: boolean) {
+    if (!next) {
+      if (i == 0)
+        i = this.products.length - 1;
+      else
+        i--;
+    }
+    else if (next && this.products.length > i + 1) {
+      i++;
+    }
+    else {
+      i = 0
+    }
+
+    this.currentItemIndex = i;
+    this.scrollToAndResetInterval(this.products[i].id.toString())
   }
 
   scrollTo(id: string) {
