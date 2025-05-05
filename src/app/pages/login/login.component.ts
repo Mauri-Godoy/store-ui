@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { User } from '../../models/user.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,13 +13,12 @@ import { User } from '../../models/user.model';
 export class LoginComponent {
 
   form: FormGroup = new FormGroup({});
-  constructor(private authService: AuthService, private formBuilder: FormBuilder) {
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.initForm();
   }
 
   initForm() {
     this.form = this.formBuilder.group({
-      email: [''],
       username: [''],
       password: ['']
     });
@@ -29,7 +29,9 @@ export class LoginComponent {
     this.authService.login(user).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        // Handle successful login, e.g., redirect to another page or show a success message
+        this.authService.setToken(response.token);
+        this.authService.setUser(response.user);
+        this.router.navigate(['/home']);
       }
     });
   }
