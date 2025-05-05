@@ -1,7 +1,20 @@
-<div class="card  bg-base-100 shadow-sm mx-auto">
-  <form class="card-body" [formGroup]="form" (ngSubmit)="login()">
-    <input type="text" placeholder="Usuario" class="input" formControlName="username" />
-    <input type="text" placeholder="Contraseña" class="input" formControlName="password" />
-    <button class="btn" type="submit">Default</button>
-  </form>
+<div class="card  bg-base-100 shadow-sm mx-auto mt-2">
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="login()" class="flex flex-col items-center justify-center gap-2">
+      <input type="text" placeholder="Usuario" class="input max-w-xl w-full" formControlName="username" />
+
+      <div class="join w-full max-w-xl">
+        <label class="input join-item w-full">
+          <input [type]="showPassword ? 'text' : 'password'" placeholder="Contraseña" required
+            formControlName="password" />
+        </label>
+        <button class="btn btn-soft" type="button" (click)="showPassword = !showPassword">
+          <lucide-angular [img]="showPassword ? EyeOff : Eye"></lucide-angular>
+        </button>
+      </div>
+
+      <button class="btn btn-primary max-w-xl w-full" type="submit">Ingresar</button>
+      <button class="btn max-w-xl w-full" type="button" routerLink="/register">Registrarse</button>
+    </form>
+  </div>
 </div>
