@@ -6,17 +6,16 @@
 
 <ng-container *ngIf="!loading">
 
-  <div class="gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-items-center pt-4">
-    <div class="card bg-base-100 shadow-sm w-full" *ngFor="let item of products">
-      <figure class="px-5 pt-5 h-40">
-        <img [src]="item.imageUrl" [alt]="item.name" class="rounded-xl h-full w-full cover-full" />
+  <div class="gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-items-center pt-4">
+    <div class="card bg-base-100 shadow-sm w-full" *ngFor="let item of products" (click)="redirectToProduct(item.id)">
+      <button class="absolute right-1 top-1 btn btn-soft btn-primary" type="button"
+        (click)="addToCart(item)"><lucide-angular [img]="Plus"></lucide-angular> </button>
+      <figure class="h-40">
+        <img [src]="item.imageUrl" [alt]="item.name" class="h-full w-full cover-full rounded" />
       </figure>
-      <div class="card-body items-center text-center">
-        <h2 class="card-title">{{ item.name }}</h2>
-        <p>{{item.description}} </p>
-        <div class="card-actions">
-          <button class="btn btn-primary" (click)="addToCart(item)">Comprar</button>
-        </div>
+      <div class="py-2 px-5">
+        <h2 class="font-medium">{{ item.name}}</h2>
+        <p class="text-sm pt-1">${{item.price}} </p>
       </div>
     </div>
   </div>
