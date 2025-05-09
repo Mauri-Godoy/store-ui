@@ -4,12 +4,22 @@
     <span class="badge badge-sm indicator-item">{{itemCount}}</span>
   </div>
 </div>
-<div tabindex="0" class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow">
-  <div class="card-body">
-    <span class="text-lg font-bold">{{itemCount}} Items</span>
-    <span class="text-info">Subtotal: ${{total}}</span>
+<div tabindex="0" class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-68 shadow">
+  <div class="card-body ">
+    <div class="h-60 overflow-auto">
+      <div *ngFor="let item of cartItems; let i = index" class="py-2">
+        <p class="indicator text-sm pr-3"> {{item.product.name}} <span
+            class="badge badge-sm indicator-item">{{item.quantity}}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="flex w-full justify-between font-semibold ">
+      <span>{{itemCount}} item/s</span>
+      <span class="text-info">${{total}}</span>
+    </div>
     <div class="card-actions">
-      <button class="btn btn-primary btn-block" [routerLink]="['cart']">View cart</button>
+      <button class="btn btn-primary btn-block" [routerLink]="['cart']">Ir al carrito</button>
     </div>
   </div>
 </div>
