@@ -1,6 +1,7 @@
 <div class="carousel w-full">
   <div [id]="item.id" class="carousel-item relative w-full py-2" *ngFor="let item of products; let i = index;">
-    <div class="card shadow-sm lg:card-side bg-base-100 h-52 mx-auto">
+    <div class="card shadow-sm lg:card-side bg-base-100 h-52 mx-auto cursor-pointer"
+      (click)="redirectToProduct(item.id)">
       <figure>
         <img [src]="item.imageUrl" [alt]="item.name" />
       </figure>

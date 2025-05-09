@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models/product.model';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, ArrowRight, ArrowLeft } from 'lucide-angular';
 
@@ -16,7 +16,7 @@ export class CarouselComponent {
   readonly ArrowLeft = ArrowLeft;
   @Input() products: Product[] = []; // IDs de tus elementos
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.startAutoScroll();
@@ -67,5 +67,7 @@ export class CarouselComponent {
     this.startAutoScroll();
   }
 
-
+  redirectToProduct(productId: number): void {
+    this.router.navigate(['/product', productId]);
+  }
 }
