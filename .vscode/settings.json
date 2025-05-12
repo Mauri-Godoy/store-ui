@@ -32,5 +32,8 @@
     "titleBar.activeForeground": "#e7e7e7",
     "titleBar.inactiveBackground": "#b71c1c99",
     "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
   }
 }

@@ -1,25 +1,27 @@
-<div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-  <div class="indicator">
-    <lucide-angular [img]="ShoppingCart"></lucide-angular>
-    <span class="badge badge-sm indicator-item">{{itemCount}}</span>
-  </div>
-</div>
-<div tabindex="0" class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-68 shadow">
-  <div class="card-body ">
-    <div class="h-60 overflow-auto">
-      <div *ngFor="let item of cartItems; let i = index" class="py-2">
-        <p class="indicator text-sm pr-3"> {{item.product.name}} <span
-            class="badge badge-sm indicator-item">{{item.quantity}}</span>
-        </p>
+<div class="dropdown dropdown-end">
+  <button tabindex="1" type="button" class="btn btn-ghost btn-circle text-white">
+    <div class="indicator">
+      <lucide-angular [img]="ShoppingCart"></lucide-angular>
+      <span class="badge badge-sm indicator-item">{{itemCount}}</span>
+    </div>
+  </button>
+  <div tabindex="1" class="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-68 shadow">
+    <div class="card-body ">
+      <div class="h-60 overflow-auto">
+        <div *ngFor="let item of cartItems; let i = index" class="py-2">
+          <p class="indicator text-sm pr-3"> {{item.product.name}} <span
+              class="badge badge-sm indicator-item">{{item.quantity}}</span>
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="flex w-full justify-between font-semibold ">
-      <span>{{itemCount}} item/s</span>
-      <span class="text-info">${{total}}</span>
-    </div>
-    <div class="card-actions">
-      <button class="btn btn-primary btn-block" [routerLink]="['cart']">Ir al carrito</button>
+      <div class="flex w-full justify-between font-semibold ">
+        <span>{{itemCount}} producto{{itemCount > 0 ? 's' : ''}}</span>
+        <span class="text-primary">${{total}}</span>
+      </div>
+      <div class="card-actions">
+        <button class="btn btn-primary btn-block" [routerLink]="['cart']">Ir al carrito</button>
+      </div>
     </div>
   </div>
 </div>

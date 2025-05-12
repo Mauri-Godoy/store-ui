@@ -1,20 +1,19 @@
-<div class=" bg-base-100 shadow-sm">
-  <div class="container mx-auto max-w-6xl navbar">
+<div class="shadow-sm bg-secondary">
+  <div class="container mx-auto max-w-6xl navbar ">
 
     <div>
-      <a class="text-xl font-medium" routerLink="">Store</a>
+      <a class="text-xl font-bold upper text-white flex items-center gap-2" routerLink=""><lucide-angular
+          [img]="Gem"></lucide-angular> Store</a>
     </div>
 
     <div class="mx-auto flex w-2/4">
-      <label class="input w-full">
-        <input type="search" placeholder="Buscar" [(ngModel)]="search" />
-      </label>
-      <button type="button" (click)="searchProducts()" class="btn">
+      <input type="search" placeholder="Buscar" [(ngModel)]="search" class="input w-full mr-1" />
+      <button type="button" (click)="searchProducts()" class="btn btn-primary">
         <lucide-angular [img]="Search"></lucide-angular>
       </button>
     </div>
 
-    <a class="btn btn-ghost" [routerLink]="['products']">Tienda</a>
+    <a class="btn btn-ghost text-white" [routerLink]="['products']">Tienda</a>
 
     <ng-container *ngIf="!isLoggedIn">
       <a class="btn btn-ghost" routerLink="login">Ingresá</a>
@@ -24,20 +23,18 @@
     <ng-container *ngIf="isLoggedIn">
       <div class="flex">
         <div class="dropdown dropdown-end">
-          <button class="btn btn-circle btn-ghost">
+          <button class="btn btn-circle btn-ghost text-white" tabindex="0">
             <lucide-angular [img]="User"></lucide-angular>
           </button>
           <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-            <li><button type="button" class="btn btn-ghost" routerLink="/carts">Mis compras</button></li>
-            <li><button type="button" class="btn" (click)="logout()">Cerrar sesión</button></li>
+            <li><button type="button" class="btn btn-primary" routerLink="/carts">Mis compras</button></li>
+            <li><button type="button" class="btn btn-ghost" (click)="logout()">Cerrar sesión</button></li>
           </ul>
         </div>
       </div>
     </ng-container>
 
-    <div class="dropdown dropdown-end">
-      <app-cart-preview></app-cart-preview>
-    </div>
+    <app-cart-preview></app-cart-preview>
 
   </div>
 </div>

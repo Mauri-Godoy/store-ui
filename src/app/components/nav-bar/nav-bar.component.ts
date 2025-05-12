@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CartPreviewComponent } from '../cart/cart-preview.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, User, Search } from 'lucide-angular';
+import { LucideAngularModule, User, Search, Gem } from 'lucide-angular';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class NavBarComponent {
   readonly User = User;
   readonly Search = Search;
+  readonly Gem = Gem;
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
