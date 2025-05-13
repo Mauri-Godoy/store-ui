@@ -19,6 +19,7 @@ export class NavBarComponent {
   readonly Gem = Gem;
   categories: Category[] = []
   search: string = ''
+  categoryId: number | undefined
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -26,7 +27,10 @@ export class NavBarComponent {
     private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((queryParams: any) => this.search = queryParams['search']);
+    this.route.queryParams.subscribe((queryParams: any) => {
+      this.search = queryParams['search']
+      this.categoryId = queryParams['categoryId']
+    });
     this.getCategories()
   }
 
