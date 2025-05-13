@@ -27,8 +27,8 @@
             <lucide-angular [img]="User"></lucide-angular>
           </button>
           <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-            <li><button type="button" class="btn btn-primary" routerLink="/carts">Mis compras</button></li>
-            <li><button type="button" class="btn btn-ghost" (click)="logout()">Cerrar sesión</button></li>
+            <li><button type="button" class="btn" routerLink="/carts">Mis compras</button></li>
+            <li><button type="button" class="btn  btn-ghost" (click)="logout()">Cerrar sesión</button></li>
           </ul>
         </div>
       </div>
@@ -38,9 +38,9 @@
 
   </div>
 </div>
-<div class="shadow-sm bg-primary">
-  <div class="container mx-auto max-w-6xl py-1 flex gap-1">
-    <button type="button" class="btn btn-ghost text-white text-sm grow" *ngFor="let item of categories"
-      [ngClass]="item.id == categoryId ? 'btn-outline' : ''" (click)="filterByCategory(item.id)">{{item.name}}</button>
+<div class="shadow-sm bg-base-100">
+  <div class="container mx-auto max-w-6xl flex gap-1 py-1">
+    <button type="button" class="btn btn-sm grow btn-ghost " *ngFor="let item of categories"
+      [ngClass]="item.id == categoryId ? 'btn-active' : ''" (click)="filterByCategory(item.id)">{{item.name}}</button>
   </div>
 </div>
