@@ -11,10 +11,12 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(search?: string) {
+  getProducts(search?: string, categoryId?: number) {
     let params = new HttpParams();
     if (search)
       params = params.append('search', search);
+    if (categoryId)
+      params = params.append('categoryId', categoryId);
 
     return this.http.get<Product[]>(`${this.baseUrl}`, { params });
   }

@@ -25,12 +25,12 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((queryParams: any) => this.getProducts(queryParams['search']));
+    this.route.queryParams.subscribe((queryParams: any) => this.getProducts(queryParams['search'], queryParams['categoryId']));
   }
 
-  getProducts(search?: string): void {
+  getProducts(search?: string, categoryId?: number): void {
     this.loading = true;
-    this.productService.getProducts(search).subscribe({
+    this.productService.getProducts(search, categoryId).subscribe({
       next: data => {
         this.products = data;
       },
