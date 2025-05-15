@@ -16,8 +16,8 @@
     <a class="btn btn-ghost text-white" [routerLink]="['products']">Tienda</a>
 
     <ng-container *ngIf="!isLoggedIn">
-      <a class="btn btn-ghost" routerLink="login">Ingresá</a>
-      <a class="btn btn-ghost" routerLink="register">Registrate</a>
+      <a class="btn btn-ghost text-white" routerLink="login">Ingresá</a>
+      <a class="btn btn-ghost text-white" routerLink="register">Registrate</a>
     </ng-container>
 
     <ng-container *ngIf="isLoggedIn">

@@ -46,15 +46,8 @@ export class CartService {
     this.saveCart(cart);
   }
 
-  removeItem(itemId: number): void {
-    const cart = this.getCart().filter(item => item.id !== itemId);
-    this.saveCart(cart);
-  }
-
-  updateQuantity(itemId: number, quantity: number): void {
-    const cart = this.getCart().map(item =>
-      item.id === itemId ? { ...item, quantity } : item
-    );
+  removeItem(productId: number): void {
+    const cart = this.getCart().filter(item => item.product.id !== productId);
     this.saveCart(cart);
   }
 
