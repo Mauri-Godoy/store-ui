@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
-import { Cart } from '../../models/cart.model';
-import { RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { LucideAngularModule, Trash } from 'lucide-angular';
+import { Cart } from '../../models/cart.model';
+import { AuthService } from '../../services/auth.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,10 @@ export class CartComponent {
 
   readonly Trash = Trash;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   get cartItems() {
     return this.cartService.getCart()
@@ -23,6 +27,11 @@ export class CartComponent {
   createCart() {
     const cart: Cart = {
       cartProducts: this.cartItems
+    }
+
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+      return;
     }
 
     this.cartService.createCart(cart).subscribe({

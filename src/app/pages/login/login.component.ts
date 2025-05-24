@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { Eye, EyeOff, LucideAngularModule } from 'lucide-angular';
 import { User } from '../../models/user.model';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { LucideAngularModule, Eye, EyeOff } from 'lucide-angular';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,12 @@ export class LoginComponent {
   readonly EyeOff = EyeOff;
   showPassword = false;
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private location: Location
+  ) {
     this.initForm();
   }
 
@@ -36,8 +41,21 @@ export class LoginComponent {
         console.log('Login successful', response);
         this.authService.setToken(response.token);
         this.authService.setUser(response.user);
-        this.router.navigate(['/home']);
+        this.goBack();
       }
     });
+  }
+
+  goBack() {
+    const currentUrl = window.location.href;
+    const previousUrl = document.referrer;
+
+    // Verifica si la URL anterior es del mismo dominio
+    if (previousUrl && new URL(previousUrl).origin === new URL(currentUrl).origin) {
+      this.location.back();
+    } else {
+      // Si no es del mismo dominio, navega a home
+      this.router.navigate(['/home']);
+    }
   }
 }
