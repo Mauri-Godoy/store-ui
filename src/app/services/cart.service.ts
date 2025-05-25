@@ -1,8 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { CartProduct } from '../models/cart-product.model';
-import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { CartProduct } from '../models/cart-product.model';
 import { Cart } from '../models/cart.model';
 
 @Injectable({
@@ -69,5 +70,31 @@ export class CartService {
 
   getCarts() {
     return this.http.get<Cart[]>(`${this.baseUrl}`);
+  }
+
+  getCartsGroupedByDate() {
+    return this.getCarts().pipe(
+      map(carts => {
+        const groupedCarts = new Map<string, Cart[]>();
+
+        carts.forEach(cart => {
+          if (cart.createdAt) {
+            const date = new Date(cart.createdAt);
+            const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+            const formattedDate = `${date.getDate()} de ${months[date.getMonth()]} del ${date.getFullYear()}`;
+
+            if (!groupedCarts.has(formattedDate)) {
+              groupedCarts.set(formattedDate, []);
+            }
+            groupedCarts.get(formattedDate)?.push(cart);
+          }
+        });
+
+        return Array.from(groupedCarts.entries()).map(([date, carts]) => ({
+          date,
+          carts
+        }));
+      })
+    );
   }
 }

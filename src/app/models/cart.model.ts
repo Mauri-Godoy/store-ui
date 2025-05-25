@@ -4,4 +4,5 @@ export class Cart {
   id?: number;
   createdAt?: Date;
   cartProducts?: CartProduct[];
+  total?: number;
 }

@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Cart } from '../../models/cart.model';
 import { CartService } from '../../services/cart.service';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-carts',
@@ -11,7 +11,7 @@ import { RouterModule } from '@angular/router';
 })
 export class CartsComponent {
 
-  carts: Cart[] = [];
+  cartsMap: { date: string; carts: Cart[] }[] = [];
 
   constructor(private cartService: CartService) { }
 
@@ -20,9 +20,9 @@ export class CartsComponent {
   }
 
   getCarts() {
-    this.cartService.getCarts().subscribe({
+    this.cartService.getCartsGroupedByDate().subscribe({
       next: (data) => {
-        this.carts = data;
+        this.cartsMap = data;
       },
       error: (error) => {
         console.error(error);

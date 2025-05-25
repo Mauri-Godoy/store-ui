@@ -1,26 +1,38 @@
-<ul class="list bg-base-100 rounded-box shadow-md col-span-3">
+<ul class="card w-full bg-base-100 rounded-box shadow-md col-span-3 h-fit" *ngIf="cartsMap.length > 0; else emptyList">
 
-  <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Historial de compras</li>
+  <div class="card-body">
+    <h2 class="card-title uppercase">Historial de compras</h2>
+    <div class="flex flex-col gap-2 w-full" *ngFor="let item of cartsMap">
+      <h3 class="font-semibold">{{item.date}}</h3>
+      <div *ngFor="let cart of item.carts" class="w-full">
+        <div class="flex justify-between items-center">
+          <div class="flex gap-4">
+            <figure class="h-20">
+              <img [src]="cart!.cartProducts![0].product.imageUrl" [alt]="cart!.cartProducts![0].product.name"
+                class="h-full w-full cover-full rounded" />
+            </figure>
+            <div>
+              <h4>{{cart.cartProducts?.length}} Producto<span *ngIf="cart.cartProducts!.length > 1">s</span></h4>
+              <h4 class="text-primary font-semibold">{{cart.total | currency}}</h4>
+            </div>
+          </div>
 
-  <ng-container *ngIf="carts.length > 0; else emptyList">
-    <li class="list-row" *ngFor="let item of carts">
-      <div>
-        <div>{{item.createdAt}}</div>
+          <button class="btn btn-primary" [routerLink]="['/cart', cart.id]">Ver carrito</button>
+        </div>
+        <div class="divider w-full"></div>
+
       </div>
-      <button class="btn btn-square btn-ghost">
-        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-            <path d="M6 3L20 12 6 21 6 3z"></path>
-          </g>
-        </svg>
-      </button>
-    </li>
-  </ng-container>
-  <ng-template #emptyList>
-    <div class="flex justify-center flex-col items-center p-2">
-      <p class="p-4 text-gray-500">No hay compras registradas</p>
-      <button class="btn btn-primary w-full max-w-3/6" type="button" [routerLink]="['/products']">Ir a la
-        tienda</button>
     </div>
-  </ng-template>
+
+  </div>
+
 </ul>
+
+
+<ng-template #emptyList>
+  <div class="flex justify-center flex-col items-center p-2 shadow bg-base-100 rounded-box">
+    <p class="p-4 text-gray-500">No hay compras registradas</p>
+    <button class="btn btn-primary w-full max-w-3/6" type="button" [routerLink]="['/products']">Ir a la
+      tienda</button>
+  </div>
+</ng-template>
