@@ -33,7 +33,6 @@ export class HttpRequestInterceptor implements HttpRequestInterceptor {
           this.router.navigate(['/login']);
         } else if (error.status === 403) {
           console.error('No tenés permisos para esta acción.', 'Acceso denegado');
-          this.authService.logout();
         } else {
           console.error(error.message, 'Error en la solicitud');
         }
