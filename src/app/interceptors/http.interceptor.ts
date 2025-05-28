@@ -4,16 +4,17 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
-
 @Injectable()
 export class HttpRequestInterceptor implements HttpRequestInterceptor {
 
   constructor(
     private authService: AuthService,
     private router: Router,
+    private toast: HotToastService
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -28,13 +29,13 @@ export class HttpRequestInterceptor implements HttpRequestInterceptor {
       catchError((error: HttpErrorResponse) => {
         // Mostrar mensajes dependiendo del tipo de error
         if (error.status === 401) {
-          console.error('Sesión expirada. Por favor, volvé a ingresar.', 'Error');
           this.authService.logout();
           this.router.navigate(['/login']);
+          this.toast.error('Sesión expirada. Por favor, volvé a ingresar.');
         } else if (error.status === 403) {
-          console.error('No tenés permisos para esta acción.', 'Acceso denegado');
+          this.toast.error('No tenés permisos para esta acción.');
         } else {
-          console.error(error.message, 'Error en la solicitud');
+          this.toast.error('Error en la solicitud');
         }
         return throwError(() => error);
       })

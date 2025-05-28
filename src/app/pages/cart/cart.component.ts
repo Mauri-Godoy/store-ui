@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { HotToastService } from '@ngneat/hot-toast';
 import { LucideAngularModule, Trash } from 'lucide-angular';
 import { Cart } from '../../models/cart.model';
 import { AuthService } from '../../services/auth.service';
@@ -17,7 +18,8 @@ export class CartComponent {
 
   constructor(private cartService: CartService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toast: HotToastService
   ) { }
 
   get cartItems() {
@@ -38,6 +40,8 @@ export class CartComponent {
       next: (data) => {
         console.log(data);
         this.cartService.clearCart();
+        this.toast.success('Compra finalizada con éxito');
+        this.router.navigate(['/carts']);
       },
       error: (error) => {
         console.error(error);

@@ -20,6 +20,8 @@
     "@angular/platform-server": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.9",
+    "@ngneat/hot-toast": "^7.0.0",
+    "@ngneat/overview": "^6.0.0",
     "@tailwindcss/postcss": "^4.1.4",
     "daisyui": "^5.0.28",
     "lucide-angular": "^0.507.0",
