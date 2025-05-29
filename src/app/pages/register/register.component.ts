@@ -1,14 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { Eye, EyeOff, LucideAngularModule } from 'lucide-angular';
 import { User } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { Eye, EyeOff, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-register',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, LucideAngularModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, LucideAngularModule, RouterModule],
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {

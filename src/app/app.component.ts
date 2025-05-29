@@ -9,6 +9,6 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'Bazar Secreto';
+  title = 'Bazar';
 
 }

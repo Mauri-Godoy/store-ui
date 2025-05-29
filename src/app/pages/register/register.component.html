@@ -1,5 +1,6 @@
 <div class="card  bg-base-100 shadow-sm mx-auto">
   <div class="card-body">
+    <h2 class="text-xl font-semibold text-center uppercase pb-4">Registrate para realizar compras</h2>
     <form [formGroup]="form" (ngSubmit)="register()" class="flex flex-col items-center justify-center gap-2">
       <input type="email" placeholder="Email" class="input max-w-xl w-full" formControlName="email" />
       <input type="text" placeholder="Usuario" class="input max-w-xl w-full" formControlName="username" />
@@ -16,6 +17,7 @@
       </div>
 
       <button class="btn btn-primary max-w-xl w-full" type="submit">Registrarse</button>
+      <button class="btn max-w-xl w-full" type="button" [routerLink]="['/login']">Iniciar sesión</button>
     </form>
   </div>
 </div>
