@@ -1,6 +1,5 @@
-<footer class="footer footer-center p-10 bg-base-200 text-base-content rounded mt-auto">
-  <div class="grid grid-flow-col gap-4">
-    <a class="link link-hover" [href]="portfolioUrl" target="_blank" *ngIf="false">Mi Portfolio</a>
+<footer class="footer footer-center p-5 bg-base-200 text-base-content rounded mt-auto flex flex-col md:flex-row md:justify-between">
+  <div class="grid-flow-col gap-4 hidden md:grid">
     <a class="link link-hover" [href]="projectsUrl" target="_blank">Proyectos</a>
     <a class="link link-hover" [href]="contactUrl" target="_blank">Contacto</a>
   </div>
@@ -24,6 +23,6 @@
   </div>
 
   <div>
-    <p>©2025 Mauricio Godoy - Desarrollado con Spring y Angular</p>
+    <p class="lg:text-md text-xs">©2025 Mauricio Godoy - Desarrollado con Spring y Angular</p>
   </div>
 </footer>

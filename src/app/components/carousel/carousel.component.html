@@ -1,20 +1,14 @@
-<div class="carousel w-full">
+<div class="carousel w-full ">
   <div [id]="item.id" class="carousel-item relative w-full py-2" *ngFor="let item of products; let i = index;">
-    <div class="card shadow-sm lg:card-side bg-base-100 h-52 mx-auto cursor-pointer"
-      (click)="redirectToProduct(item.id)">
+    <div class="card shadow-sm md:card-side flex-col md:h-52 mx-auto">
       <figure class="p-4">
-        <img [src]="item.imageUrl" [alt]="item.name" class="h-full w-full cover-full rounded" />
+        <img [src]="item.imageUrl" [alt]="item.name" class="md:h-full md:w-full w-20 h-20 cover-full rounded" />
       </figure>
       <div class="card-body">
         <h2 class="card-title">{{item.name}}</h2>
         <p>{{item.description}}</p>
+        <a class="btn btn-primary" (click)="redirectToProduct(item.id)">Ir al producto</a>
       </div>
-    </div>
-    <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-      <button (click)="scrollByIndex(i, false)" type="button" class="btn btn-circle">
-        <lucide-angular [img]="ArrowLeft"></lucide-angular></button>
-      <button (click)="scrollByIndex(i, true)" type="button" class="btn btn-circle">
-        <lucide-angular [img]="ArrowRight"></lucide-angular> </button>
     </div>
   </div>
 </div>
