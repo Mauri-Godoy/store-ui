@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HotToastService } from '@ngneat/hot-toast';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
@@ -15,7 +16,7 @@ export class CartService {
   private cartSubject = new BehaviorSubject<CartProduct[]>(this.loadCart());
   cart$ = this.cartSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toast: HotToastService) { }
 
   private loadCart(): CartProduct[] {
     try {
@@ -45,11 +46,13 @@ export class CartService {
       cart.push({ ...item });
     }
     this.saveCart(cart);
+    this.toast.success('Producto agregado al carrito');
   }
 
   removeItem(productId: number): void {
     const cart = this.getCart().filter(item => item.product.id !== productId);
     this.saveCart(cart);
+    this.toast.success('Producto eliminado del carrito');
   }
 
   clearCart(): void {

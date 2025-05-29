@@ -1,11 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LucideAngularModule, Plus } from 'lucide-angular';
+import { CartProduct } from '../../models/cart-product.model';
 import { Product } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { CartProduct } from '../../models/cart-product.model';
-import { LucideAngularModule, Plus } from 'lucide-angular';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -33,6 +33,9 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts(search, categoryId).subscribe({
       next: data => {
         this.products = data;
+      },
+      error: () => {
+        this.loading = false;
       },
       complete: () => {
         this.loading = false;

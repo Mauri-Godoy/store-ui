@@ -8,7 +8,7 @@
       </div>
       <div class="flex flex-col justify-between">
         <div>
-          <h6>{{item.product.name}}</h6>
+          <a class="link link-hover" [routerLink]="['/product', item.product.id]">{{item.product.name}}</a>
           <p class="text-xs uppercase font-semibold opacity-60">{{item.product.description}}</p>
         </div>
         <div class="text-xs uppercase font-semibold text-primary text-right">{{item.quantity}} x {{item.product.price |

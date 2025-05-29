@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../../models/product.model';
-import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CartProduct } from '../../models/cart-product.model';
+import { Product } from '../../models/product.model';
+import { CartService } from '../../services/cart.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product',
@@ -15,6 +17,7 @@ export class ProductComponent {
 
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
+    private cartService: CartService
   ) {
   }
 
@@ -28,5 +31,10 @@ export class ProductComponent {
         this.product = data;
       }
     });
+  }
+
+  addToCart(product: Product): void {
+    const cartProduct: CartProduct = { product: product, price: product.price, quantity: 1 };
+    this.cartService.addItem(cartProduct);
   }
 }

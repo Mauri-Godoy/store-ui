@@ -5,10 +5,10 @@
       <h2 class="card-title uppercase">Historial de compras</h2>
       <div class="flex flex-col gap-2 w-full" *ngFor="let item of cartsMap">
         <h3 class="font-semibold">{{item.date}}</h3>
-        <div *ngFor="let cart of item.carts" class="w-full">
+        <div *ngFor="let cart of item.carts; let i = index" class="w-full">
           <div class="flex justify-between items-center">
             <div class="flex gap-4">
-              <figure class="h-20">
+              <figure class="h-20 w-20">
                 <img [src]="cart!.cartProducts![0].product.imageUrl" [alt]="cart!.cartProducts![0].product.name"
                   class="h-full w-full cover-full rounded" />
               </figure>
@@ -20,7 +20,7 @@
 
             <button class="btn btn-primary" (click)="selectCart(cart)">Ver compra</button>
           </div>
-          <div class="divider w-full"></div>
+          <div class="divider w-full" *ngIf="i < item.carts.length - 1"></div>
 
         </div>
       </div>
@@ -42,7 +42,9 @@
 
       <div *ngFor="let item of cartSelected.cartProducts">
         <div class="flex justify-between items-center">
-          <h4>{{item.product.name}}</h4>
+          <div>
+            <a class="link link-hover" [routerLink]="['/product', item.product.id]">{{item.product.name}}</a>
+          </div>
           <h4 class="text-primary font-semibold">{{item.quantity}} x {{item.price | currency}}</h4>
         </div>
       </div>
