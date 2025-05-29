@@ -6,36 +6,53 @@
           [img]="Store"></lucide-angular> <span class="hidden lg:block">Bazar</span></a>
     </div>
 
-    <div class="mx-auto flex w-2/4">
+    <div class="mx-auto flex md:w-2/4 w-full px-4 md:px-0">
       <input type="search" placeholder="Buscar" [(ngModel)]="search" class="input w-full mr-1" />
       <button type="button" (click)="searchProducts()" class="btn btn-primary">
         <lucide-angular [img]="Search"></lucide-angular>
       </button>
     </div>
 
-    <a class="btn btn-ghost text-white" [routerLink]="['products']">Tienda</a>
+    <div class="md:flex gap-2 hidden">
+      <a class="btn btn-ghost text-white" [routerLink]="['products']">Tienda</a>
 
-    <ng-container *ngIf="!isLoggedIn">
-      <a class="btn btn-ghost text-white" routerLink="login">Ingresá</a>
-      <a class="btn btn-ghost text-white" routerLink="register">Registrate</a>
-    </ng-container>
+      <ng-container *ngIf="!isLoggedIn">
+        <a class="btn btn-ghost text-white" routerLink="login">Ingresá</a>
+        <a class="btn btn-ghost text-white" routerLink="register">Registrate</a>
+      </ng-container>
 
-    <ng-container *ngIf="isLoggedIn">
-      <div class="flex">
-        <div class="dropdown dropdown-end">
-          <button class="btn btn-circle btn-ghost text-white" tabindex="0">
-            <lucide-angular [img]="User"></lucide-angular>
-          </button>
-          <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-            <li><button type="button" class="btn" routerLink="/carts">Mis compras</button></li>
-            <li><button type="button" class="btn  btn-ghost" (click)="logout()">Cerrar sesión</button></li>
-          </ul>
+      <ng-container *ngIf="isLoggedIn">
+        <div class="flex">
+          <div class="dropdown dropdown-end">
+            <button class="btn btn-circle btn-ghost text-white" tabindex="0">
+              <lucide-angular [img]="User"></lucide-angular>
+            </button>
+            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              <li><button type="button" class="btn" routerLink="/carts">Mis compras</button></li>
+              <li><button type="button" class="btn  btn-ghost" (click)="logout()">Cerrar sesión</button></li>
+            </ul>
+          </div>
         </div>
+      </ng-container>
+
+      <app-cart-preview></app-cart-preview>
+    </div>
+
+    <div class="md:hidden">
+      <div class="dropdown dropdown-end">
+        <button class="btn btn-circle btn-ghost text-white" tabindex="0">
+          <lucide-angular [img]="Menu"></lucide-angular>
+        </button>
+        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+          <li><a class="btn" routerLink="products">Tienda</a></li>
+          <li *ngIf="!isLoggedIn"><a class="btn" routerLink="login">Ingresá</a></li>
+          <li *ngIf="!isLoggedIn"><a class="btn" routerLink="register">Registrate</a></li>
+          <li *ngIf="isLoggedIn"><a class="btn" routerLink="carts">Mis compras</a></li>
+          <li *ngIf="isLoggedIn"><button type="button" class="btn  btn-ghost" (click)="logout()">Cerrar sesión</button>
+          </li>
+        </ul>
       </div>
-    </ng-container>
-
-    <app-cart-preview></app-cart-preview>
-
+    </div>
   </div>
 </div>
 <div class="shadow-sm bg-base-100">

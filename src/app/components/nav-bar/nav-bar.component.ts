@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { LucideAngularModule, Search, Store, User } from 'lucide-angular';
+import { LucideAngularModule, Menu, Search, Store, User } from 'lucide-angular';
 import { Category } from '../../models/category.model';
 import { AuthService } from '../../services/auth.service';
 import { CategoryService } from '../../services/category.service';
@@ -17,6 +17,7 @@ export class NavBarComponent {
   readonly User = User;
   readonly Search = Search;
   readonly Store = Store;
+  readonly Menu = Menu;
   categories: Category[] = []
   search: string = ''
   categoryId: number | undefined

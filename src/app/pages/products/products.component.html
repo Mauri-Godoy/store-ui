@@ -6,19 +6,19 @@
 
 <ng-container *ngIf="!loading">
 
-  <div class="gap-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 justify-items-center">
+  <div class="md:gap-4 gap-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
     <div class="card bg-base-100 shadow-sm w-full" *ngFor="let item of products">
       <div class="cursor-pointer" (click)="redirectToProduct(item.id)">
         <span class="badge badge-sm badge-primary badge-soft absolute top-2 right-2 uppercase font-semibold">{{item.category?.name}}</span>
-        <figure class="h-40 p-4">
+        <figure class="h-40 p-4 md:w-full w-40 mx-auto">
           <img [src]="item.imageUrl" [alt]="item.name" class="h-full w-full cover-full rounded" />
         </figure>
         <div class="py-2 px-5">
-          <h2 class="font-medium">{{ item.name}}</h2>
+          <h2 class="font-medium text-sm md:text-base">{{ item.name}}</h2>
           <p class="text-sm pt-1">${{item.price}} </p>
         </div>
       </div>
-      <button class="btn btn-primary m-2 uppercase font-semibold" type="button" (click)="addToCart(item)">Agregar al
+      <button class="btn btn-primary m-2 uppercase font-semibold btn-sm md:btn-md" type="button" (click)="addToCart(item)">Agregar al
         carrito </button>
     </div>
   </div>
