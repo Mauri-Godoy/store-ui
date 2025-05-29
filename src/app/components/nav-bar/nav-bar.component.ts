@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { CartPreviewComponent } from '../cart/cart-preview.component';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { LucideAngularModule, User, Search, Gem } from 'lucide-angular';
-import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { CategoryService } from '../../services/category.service';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { LucideAngularModule, Search, Store, User } from 'lucide-angular';
 import { Category } from '../../models/category.model';
+import { AuthService } from '../../services/auth.service';
+import { CategoryService } from '../../services/category.service';
+import { CartPreviewComponent } from '../cart/cart-preview.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,7 +16,7 @@ import { Category } from '../../models/category.model';
 export class NavBarComponent {
   readonly User = User;
   readonly Search = Search;
-  readonly Gem = Gem;
+  readonly Store = Store;
   categories: Category[] = []
   search: string = ''
   categoryId: number | undefined

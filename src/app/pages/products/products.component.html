@@ -10,7 +10,7 @@
     <div class="card bg-base-100 shadow-sm w-full" *ngFor="let item of products">
       <div class="cursor-pointer" (click)="redirectToProduct(item.id)">
         <span class="badge badge-sm badge-primary badge-soft absolute top-2 right-2 uppercase font-semibold">{{item.category?.name}}</span>
-        <figure class="h-40">
+        <figure class="h-40 p-4">
           <img [src]="item.imageUrl" [alt]="item.name" class="h-full w-full cover-full rounded" />
         </figure>
         <div class="py-2 px-5">

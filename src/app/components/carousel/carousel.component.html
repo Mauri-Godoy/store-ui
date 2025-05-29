@@ -2,8 +2,8 @@
   <div [id]="item.id" class="carousel-item relative w-full py-2" *ngFor="let item of products; let i = index;">
     <div class="card shadow-sm lg:card-side bg-base-100 h-52 mx-auto cursor-pointer"
       (click)="redirectToProduct(item.id)">
-      <figure>
-        <img [src]="item.imageUrl" [alt]="item.name" />
+      <figure class="p-4">
+        <img [src]="item.imageUrl" [alt]="item.name" class="h-full w-full cover-full rounded" />
       </figure>
       <div class="card-body">
         <h2 class="card-title">{{item.name}}</h2>
